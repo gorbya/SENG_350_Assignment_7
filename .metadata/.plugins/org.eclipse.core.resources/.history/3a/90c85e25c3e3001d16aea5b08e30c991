@@ -18,9 +18,6 @@ public class MazeBuilder {
 	
 	private static final int clear = 1;
 	private static final int walkedThrough = 2;
-	
-	// Boat Anchor's are found here
-	
 	private static final int blocked = 0;
 	
 	private static int startingRow;
