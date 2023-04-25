@@ -2,6 +2,7 @@ package maze;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -17,6 +18,11 @@ public class MazeBuilder {
 	
 	private static final int clear = 1;
 	private static final int walkedThrough = 2;
+	
+	// Boat Anchor's are found here
+	
+	private static final int blocked = 0;
+	
 	private static int startingRow;
 	private static int startingColumn;
 	private static int numberOfRows;

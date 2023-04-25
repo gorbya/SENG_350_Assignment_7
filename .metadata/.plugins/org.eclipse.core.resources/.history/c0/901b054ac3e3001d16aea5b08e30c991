@@ -2,6 +2,7 @@ package maze;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -25,7 +26,7 @@ public class MazeBuilder {
 	private static int finishColumn;
 	public static int[][] maze;
 	public static boolean isSolved;
-	public static Stack<Coordinates> path = new Stack();
+	public static Stack<Coordinates> path;
 	public static Coordinates finalCoords = new Coordinates();
 
 	
