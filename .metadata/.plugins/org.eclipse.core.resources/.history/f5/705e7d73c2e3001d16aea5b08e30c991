@@ -116,7 +116,7 @@ public class MazeBuilder {
 		System.out.println("Maze Complete");
 	}
 
-	//Extracted this from the main class, this makes the code easier to read. 
+
 	private static void solveMaze() {
 		Coordinates Coords;
 		printMaze();

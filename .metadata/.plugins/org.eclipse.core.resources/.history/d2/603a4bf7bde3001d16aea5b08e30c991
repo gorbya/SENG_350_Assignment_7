@@ -110,27 +110,21 @@ public class MazeBuilder {
 		Solver.allPathsTaken.push(Coords);
 		
 		while (!isSolved) {
-			solveMaze();
+			printMaze();
+			Coords = (Coordinates) path.peek();
+			Solver.allPathsTaken.push(Coords);
+			Coords = Solver.multiChoiceChecker(Coords.getX(), Coords.getY());
+			writePath(Coords.getX(), Coords.getY());
+			path.push(Coords);
+			
+			
+			if (Coords.getX() == finalCoords.getX() && Coords.getY() == finalCoords.getY()) {
+				isSolved = true;
+				continue;
+			}
 		}
 		printMaze();
 		System.out.println("Maze Complete");
-	}
-
-	//Extracted this from the main class, this makes the code easier to read. 
-	private static void solveMaze() {
-		Coordinates Coords;
-		printMaze();
-		Coords = (Coordinates) path.peek();
-		Solver.allPathsTaken.push(Coords);
-		Coords = Solver.multiChoiceChecker(Coords.getX(), Coords.getY());
-		writePath(Coords.getX(), Coords.getY());
-		path.push(Coords);
-		
-		
-		if (Coords.getX() == finalCoords.getX() && Coords.getY() == finalCoords.getY()) {
-			isSolved = true;
-			return;
-		}
 	}
 
 }
