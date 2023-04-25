@@ -9,6 +9,13 @@ import java.util.Stack;
 public class MazeBuilder {
 	//MazeBuilder by Alex Gorby && Max Evans
 	
+	
+	//
+	//	THIS class here acts as the GOD function of this program. It handles all logic in this one space. 
+	// 	This can be fixed by extracting extra logic functions to separate classes. 
+	//
+	//
+	
 	private static final int clear = 1;
 	private static final int walkedThrough = 2;
 	private static final int blocked = 0;

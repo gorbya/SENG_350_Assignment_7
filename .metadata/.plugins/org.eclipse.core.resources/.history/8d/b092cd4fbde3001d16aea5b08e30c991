@@ -1,0 +1,123 @@
+package maze;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class MazeBuilder {
+	//MazeBuilder by Alex Gorby && Max Evans
+	
+	private static final int clear = 1;
+	private static final int walkedThrough = 2;
+	private static final int blocked = 0;
+	
+	private static int startingRow;
+	private static int startingColumn;
+	private static int numberOfRows;
+	private static int numberOfColumns;
+	private static int finishRow;
+	private static int finishColumn;
+	public static int[][] maze;
+	public static boolean isSolved;
+	public static Stack<Coordinates> path = new Stack();
+	public static Coordinates finalCoords = new Coordinates();
+
+	
+	public static void readAndBuildMaze(String filename) throws FileNotFoundException {
+		
+		Scanner sc = new Scanner(new File(filename));
+		numberOfRows = sc.nextInt();
+		numberOfColumns = sc.nextInt();
+		startingRow = sc.nextInt();
+		startingColumn = sc.nextInt();
+		finishRow = sc.nextInt();
+		finishColumn = sc.nextInt();
+		
+		finalCoords.setX(finishRow);
+		finalCoords.setY(finishColumn);
+		
+		maze = new int[numberOfRows][numberOfColumns];
+		for(int i = 0; i < numberOfRows; i++){
+			for(int j = 0; j < numberOfColumns; j++){
+				maze[i][j] =  sc.nextInt();
+				System.out.print(maze[i][j]+" ");
+			}
+			System.out.println();
+		}
+		sc.close();
+
+	}
+	
+
+	public void thisPosition(int row, int col) {
+		maze[row][col] = walkedThrough;
+	}
+	
+	public boolean endGoal(int row, int col) {
+		if(row == finishRow && col == finishColumn) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public static boolean inBoundsCheck(int row, int col) {
+		
+		boolean inBounds = false;
+		if(row >= 0 && row < maze.length && col >=0 && col < maze[row].length) { 
+			if(maze[row][col] == 2) {
+				return false;
+			}
+		}	
+		
+		if(row >= 0 && row < maze.length && col >=0 && col < maze[row].length && maze[row][col] == clear ) {
+			inBounds = true;
+		}
+		return inBounds;
+	}
+	
+	public static void writePath(int x, int y) {
+		maze[x][y] = 2;
+	}
+	
+	public static void printMaze() {
+		for(int i = 0; i < numberOfRows; i++){
+			for(int j = 0; j < numberOfColumns; j++) {
+				System.out.print(maze[i][j]+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println();
+	}
+
+	public static void main(String[] args) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		readAndBuildMaze("mazeFile.txt");
+		
+		Coordinates Coords = new Coordinates(startingRow, startingColumn);
+		path.push(Coords);
+		writePath(Coords.getX(), Coords.getY());
+		Solver.allPathsTaken.push(Coords);
+		
+		while (!isSolved) {
+			printMaze();
+			Coords = (Coordinates) path.peek();
+			Solver.allPathsTaken.push(Coords);
+			Coords = Solver.multiChoiceChecker(Coords.getX(), Coords.getY());
+			writePath(Coords.getX(), Coords.getY());
+			path.push(Coords);
+			
+			
+			if (Coords.getX() == finalCoords.getX() && Coords.getY() == finalCoords.getY()) {
+				isSolved = true;
+				continue;
+			}
+		}
+		printMaze();
+		System.out.println("Maze Complete");
+	}
+
+}
