@@ -99,9 +99,6 @@ public class MazeBuilder {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		
-		//Potential input kludge, aslo can only solve this maze...
-		
 		readAndBuildMaze("mazeFile.txt");
 		
 		Coordinates Coords = new Coordinates(startingRow, startingColumn);
