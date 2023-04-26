@@ -2,10 +2,8 @@ package maze;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.Stack;
-import java.io.FileInputStream;
 
 public class MazeBuilder {
 	//MazeBuilder by Alex Gorby && Max Evans
@@ -102,29 +100,9 @@ public class MazeBuilder {
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		
-		//Potential input kludge, also can only solve this maze...
-		//String mazeFilePath = args[0];
-		String mazeFilePath = "mazeFile.txt";
+		//Potential input kludge, aslo can only solve this maze...
 		
-		try {
-            File file = new File(mazeFilePath);
-            FileInputStream fr = new FileInputStream(file);
-            int c = fr.read();
-            while (c != -1) {
-                char character = (char) c;
-                if (character != '0' && character != '\n' && character != '\r' && character != '1' && character != '2' && character != '3' && character != ' ' && character != '8' && character != '9' ) {
-                    System.err.println("Error: The file contains an invalid character.");
-                    System.exit(1);
-                }
-                c = fr.read();
-            }
-            fr.close();
-            System.out.println("All characters in the file are valid.");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		
-		readAndBuildMaze(mazeFilePath);
+		readAndBuildMaze("mazeFile.txt");
 		
 		Coordinates Coords = new Coordinates(startingRow, startingColumn);
 		path.push(Coords);

@@ -124,7 +124,7 @@ public class MazeBuilder {
             e.printStackTrace();
         }
 		
-		readAndBuildMaze(mazeFilePath);
+		readAndBuildMaze("mazeFile");
 		
 		Coordinates Coords = new Coordinates(startingRow, startingColumn);
 		path.push(Coords);

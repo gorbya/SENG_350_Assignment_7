@@ -112,7 +112,7 @@ public class MazeBuilder {
             int c = fr.read();
             while (c != -1) {
                 char character = (char) c;
-                if (character != '0' && character != '\n' && character != '\r' && character != '1' && character != '2' && character != '3' && character != ' ' && character != '8' && character != '9' ) {
+                if (character != '0' && character != '/r' && character != '1' && character != '2' && character != '3' && character != ' ' && character != '8' && character != '9' ) {
                     System.err.println("Error: The file contains an invalid character.");
                     System.exit(1);
                 }
@@ -124,7 +124,7 @@ public class MazeBuilder {
             e.printStackTrace();
         }
 		
-		readAndBuildMaze(mazeFilePath);
+		readAndBuildMaze("mazeFile");
 		
 		Coordinates Coords = new Coordinates(startingRow, startingColumn);
 		path.push(Coords);
